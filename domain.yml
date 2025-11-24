@@ -1,0 +1,53 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - hoi_thong_tin_bot
+  - hoi_phuong_thuc_xet_tuyen
+  - hoi_phuong_thuc_100
+  - hoi_phuong_thuc_200
+  - hoi_phuong_thuc_405
+  - hoi_phuong_thuc_406
+
+responses:
+  utter_greet:
+  - text: "Xin chào! 👋 Mình là Trợ lý ảo tuyển sinh trường Đại học Trà Vinh. Mình có thể giúp gì cho bạn?"
+
+  utter_goodbye:
+  - text: "Tạm biệt bạn! Hẹn gặp lại bạn sớm nhé. 👋"
+    image: "https://i.pinimg.com/736x/97/9d/94/979d948c27c1c2f0d9581441860e1deb.jpg"
+
+  utter_gioi_thieu_bot:
+  - text: "Chào bạn! 🤖 Mình là Trợ lý ảo AI (Chatbot) của Đại học Trà Vinh.\nNhiệm vụ của mình là hỗ trợ giải đáp thắc mắc 24/7 về tuyển sinh. Mình có thể giúp bạn các vấn đề sau:"
+    buttons:
+    - title: "📜 Phương thức xét tuyển"
+      payload: "/hoi_phuong_thuc_xet_tuyen"
+
+  utter_tra_loi_xet_tuyen:
+  - text: "Trường Đại học Trà Vinh xét tuyển theo 4 phương thức chính. Bạn muốn xem chi tiết phương thức nào?"
+    buttons:
+    - title: "1️⃣ Mã 100: Điểm thi THPT"
+      payload: "/hoi_phuong_thuc_100"
+    - title: "2️⃣ Mã 200: Học bạ THPT"
+      payload: "/hoi_phuong_thuc_200"
+    - title: "3️⃣ Mã 405: Thi + Năng khiếu"
+      payload: "/hoi_phuong_thuc_405"
+    - title: "4️⃣ Mã 406: Học bạ + Năng khiếu"
+      payload: "/hoi_phuong_thuc_406"
+
+  utter_chi_tiet_100:
+  - text: "1️⃣ **Phương thức 100:** Xét kết quả kỳ thi tốt nghiệp THPT."
+
+  utter_chi_tiet_200:
+  - text: "2️⃣ **Phương thức 200:** Xét kết quả học tập THPT (Xét học bạ)."
+
+  utter_chi_tiet_405:
+  - text: "3️⃣ **Phương thức 405:** Kết hợp Thi THPT + Năng khiếu."
+
+  utter_chi_tiet_406:
+  - text: "4️⃣ **Phương thức 406:** Kết hợp Học bạ + Năng khiếu."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

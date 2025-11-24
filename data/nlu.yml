@@ -1,0 +1,86 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - xin chào
+    - chào bạn
+    - hello
+    - hi
+    - chào ad
+    - ad ơi
+    - cho mình hỏi chút
+    - có ai ở đó không
+    - chào buổi sáng
+    - alo
+    - ê
+    - chào
+
+- intent: goodbye
+  examples: |
+    - good bye
+    - see you later
+    - good night
+    - bye
+    - goodbye
+    - bye bye
+    - tạm biệt
+    - chào nhé
+    - hẹn gặp lại
+    - mình đi đây
+    - kết thúc
+    - stop
+    - nghỉ nhé
+
+- intent: hoi_thong_tin_bot
+  examples: |
+    - bạn là ai
+    - giới thiệu về bản thân đi
+    - bot tên gì
+    - bạn có chức năng gì
+    - bạn làm được gì
+    - chức năng của hệ thống
+    - mình cần hướng dẫn sử dụng
+    - help
+    - giúp tôi với
+    - bạn là người thật hay máy
+
+
+- intent: hoi_phuong_thuc_xet_tuyen
+  examples: |
+    - các phương thức xét tuyển
+    - trường xét tuyển như thế nào
+    - làm sao để vào học tại trường
+    - quy chế tuyển sinh
+    - cách nộp hồ sơ xét tuyển
+    - trường có xét học bạ không
+    - xét tuyển đại học trà vinh
+
+- intent: hoi_phuong_thuc_100
+  examples: |
+    - phương thức 100 là gì
+    - xét điểm thi thpt
+    - xét kết quả thi tốt nghiệp
+    - mã 100 là gì
+    - xét tuyển dựa vào điểm thi
+
+- intent: hoi_phuong_thuc_200
+  examples: |
+    - phương thức 200
+    - xét học bạ
+    - mã 200 là gì
+    - xét tuyển dựa vào học bạ
+
+- intent: hoi_phuong_thuc_405
+  examples: |
+    - phương thức 405
+    - xét điểm thi và năng khiếu
+    - thi năng khiếu kết hợp điểm thi
+    - mã 405
+
+- intent: hoi_phuong_thuc_406
+  examples: |
+    - phương thức 406
+    - học bạ kết hợp năng khiếu
+    - xét năng khiếu bằng học bạ
+    - mã 406

@@ -1,0 +1,54 @@
+version: "3.1"
+
+stories:
+
+- story: kịch bản chào hỏi
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: kịch bản tạm biệt
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: kịch bản tự giới thiệu
+  steps:
+  - intent: hoi_thong_tin_bot
+  - action: utter_gioi_thieu_bot
+
+# Kịch bản tổng quát (Hiện menu)
+- story: kịch bản xem xét tuyển
+  steps:
+  - intent: hoi_phuong_thuc_xet_tuyen
+  - action: utter_tra_loi_xet_tuyen
+
+# Kịch bản chi tiết từng mã
+- story: kịch bản xem mã 100
+  steps:
+  - intent: hoi_phuong_thuc_xet_tuyen
+  - action: utter_tra_loi_xet_tuyen
+  - intent: hoi_phuong_thuc_100
+  - action: utter_chi_tiet_100
+
+- story: kịch bản xem mã 200
+  steps:
+  - intent: hoi_phuong_thuc_xet_tuyen
+  - action: utter_tra_loi_xet_tuyen
+  - intent: hoi_phuong_thuc_200
+  - action: utter_chi_tiet_200
+
+# --- BỔ SUNG THÊM 2 CÁI NÀY ---
+- story: kịch bản xem mã 405
+  steps:
+  - intent: hoi_phuong_thuc_xet_tuyen
+  - action: utter_tra_loi_xet_tuyen
+  - intent: hoi_phuong_thuc_405
+  - action: utter_chi_tiet_405
+
+- story: kịch bản xem mã 406
+  steps:
+  - intent: hoi_phuong_thuc_xet_tuyen
+  - action: utter_tra_loi_xet_tuyen
+  - intent: hoi_phuong_thuc_406
+  - action: utter_chi_tiet_406
