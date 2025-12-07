@@ -2,10 +2,10 @@ version: "3.1"
 
 stories:
 
-- story: kịch bản chào hỏi
-  steps:
-  - intent: greet
-  - action: utter_greet
+#- story: kịch bản chào hỏi
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
 
 - story: kịch bản tạm biệt
   steps:
@@ -38,7 +38,6 @@ stories:
   - intent: hoi_phuong_thuc_200
   - action: utter_chi_tiet_200
 
-# --- BỔ SUNG THÊM 2 CÁI NÀY ---
 - story: kịch bản xem mã 405
   steps:
   - intent: hoi_phuong_thuc_xet_tuyen
@@ -52,3 +51,45 @@ stories:
   - action: utter_tra_loi_xet_tuyen
   - intent: hoi_phuong_thuc_406
   - action: utter_chi_tiet_406
+# Kịch bản hỏi thông tin ngành học
+- story: hoi thong tin nganh
+  steps:
+  - intent: ask_major_info
+    entities:
+    - major: "Công nghệ thông tin"
+  - action: action_provide_major_info
+# Kịch bản hỏi học bổng
+# Kịch bản 1: Hỏi học bổng chung -> Chọn loại KKHT
+- story: kịch bản hỏi học bổng từ menu
+  steps:
+  - intent: ask_scholarship
+  - action: utter_ask_scholarship
+  - intent: ask_scholarship_kkht
+  - action: utter_scholarship_kkht
+
+# Kịch bản 2: Hỏi thẳng về học bổng nữ sinh (Không qua menu)
+- story: kịch bản hỏi thẳng học bổng nữ sinh
+  steps:
+  - intent: ask_scholarship_female_tech
+  - action: utter_scholarship_female_tech
+
+# Kịch bản hỏi thời gian vs học phí
+#1: Hỏi ngành xong hỏi tiếp học phí
+- story: hoi nganh roi hoi hoc phi
+  steps:
+  - intent: ask_major_info
+    entities:
+    - major: "Công nghệ thông tin"
+  - action: action_provide_major_info
+  - intent: ask_tuition             # Người dùng bấm nút "Xem học phí"
+  - action: action_provide_tuition
+
+#2: Hỏi ngành xong hỏi tiếp thời gian
+- story: hoi nganh roi hoi thoi gian
+  steps:
+  - intent: ask_major_info
+    entities:
+    - major: "Y khoa"
+  - action: action_provide_major_info
+  - intent: ask_training_duration   # Người dùng bấm nút "Thời gian đào tạo"
+  - action: action_provide_duration

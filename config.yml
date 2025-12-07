@@ -1,41 +1,45 @@
-# Cấu hình ngôn ngữ tiếng Việt
 language: vi
 
 pipeline:
-# 1. Bộ tách từ: Dùng khoảng trắng để tách từ
+# 1. Tách từ
 - name: WhitespaceTokenizer
 
-# 2. Bộ đặc trưng từ vựng: Giúp học các mẫu câu (Regex) nếu có
+# 2. Đặc trưng từ vựng
 - name: RegexFeaturizer
-
-# 3. Bộ đặc trưng cú pháp: Học cấu trúc câu
 - name: LexicalSyntacticFeaturizer
 
-# 4. Bộ vector hóa (QUAN TRỌNG NHẤT CHO VẤN ĐỀ CỦA BẠN):
-# Giúp bot học cả những từ viết sai chính tả nhẹ hoặc dính dấu câu
+# 3. Vector hóa (Giúp hiểu từ vựng)
 - name: CountVectorsFeaturizer
 - name: CountVectorsFeaturizer
   analyzer: char_wb
   min_ngram: 1
   max_ngram: 4
 
-# 5. Bộ phân loại Intent & Entity (Bộ não chính)
+# 4. Phân loại
 - name: DIETClassifier
-  epochs: 100
+  epochs: 150                   # Có thể tăng để điều chỉnh bot duyệt dữ liệu kỹ hơn
   constrain_similarities: true
+  entity_recognition_mode: true
 
-# 6. Các bộ hỗ trợ khác
+# 5. Xử lý đồng nghĩa 
 - name: EntitySynonymMapper
+
+# 6. Chọn câu trả lời
 - name: ResponseSelector
   epochs: 100
   constrain_similarities: true
+
+# 7. Xử lý khi Bot không hiểu 
 - name: FallbackClassifier
-  threshold: 0.3
+  threshold: 0.4                # Mỗi 0.1 là 10% độ chắc chắn để bot hiểu đúng ý người dùng và trả lời
   ambiguity_threshold: 0.1
 
 policies:
 - name: MemoizationPolicy
 - name: RulePolicy
+  core_fallback_threshold: 0.4
+  core_fallback_action_name: "action_default_fallback"
+  enable_fallback_prediction: True
 - name: UnexpecTEDIntentPolicy
   max_history: 5
   epochs: 100

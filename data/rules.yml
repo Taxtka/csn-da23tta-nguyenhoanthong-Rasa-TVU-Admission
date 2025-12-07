@@ -1,3 +1,68 @@
 version: "3.1"
 
 rules:
+
+- rule: Hien thi cac phuong thuc xet tuyen
+  steps:
+  - intent: hoi_phuong_thuc_xet_tuyen  
+  - action: utter_tra_loi_xet_tuyen    
+
+# ==========================================================
+
+- rule: Hien thi menu goi y nganh hot
+  steps:
+  - intent: ask_major_menu
+  - action: utter_goi_y_nganh_hot
+
+# ==========================================================
+
+- rule: Say hello
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_gioi_thieu_bot       #Chào xong thì hiện Menu chính luôn cho tiện~
+
+- rule: Say goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+# ==========================================================
+
+# Chính: Hỏi học bổng chung
+- rule: Tra loi ve hoc bong chung
+  steps:
+  - intent: ask_scholarship
+  - action: utter_ask_scholarship
+
+#Phụ 1: Hỏi KKHT
+- rule: Chi tiet hoc bong KKHT
+  steps:
+  - intent: ask_scholarship_kkht
+  - action: utter_scholarship_kkht
+
+#Phụ 2: Hỏi Tài trợ
+- rule: Chi tiet hoc bong Tai tro
+  steps:
+  - intent: ask_scholarship_sponsor
+  - action: utter_scholarship_sponsor
+
+#Phụ 3: Hỏi Nữ sinh kỹ thuật
+- rule: Chi tiet hoc bong Nu sinh
+  steps:
+  - intent: ask_scholarship_female_tech
+  - action: utter_scholarship_female_tech
+
+# ==========================================================
+
+# Khi user bấm nút "Thời gian đào tạo" -> Gọi hàm trả lời thời gian
+- rule: Tra loi thoi gian dao tao
+  steps:
+  - intent: ask_training_duration
+  - action: action_provide_duration
+
+# Khi user bấm nút "Học phí" -> Gọi hàm trả lời học phí
+- rule: Tra loi hoc phi
+  steps:
+  - intent: ask_tuition
+  - action: action_provide_tuition
