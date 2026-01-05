@@ -1,7 +1,7 @@
 version: "3.1"
 
 intents:
-  #Chào hỏi
+  # Chào hỏi
   - greet
   - goodbye
   # Giới thiệu bot
@@ -23,6 +23,16 @@ intents:
   # Thời gian đào tạo
   - ask_training_duration
   - ask_tuition
+  # Thời hạn nộp hồ sơ
+  - hoi_thoi_gian_xet_tuyen
+  # Điểm chuẩn xét tuyển
+  - tra_cuu_diem_chuan
+  - nhap_diem_so
+  - cung_cap_to_hop
+  # Chương trình đào tạo
+  - ask_program_career
+  - hoi_chuong_trinh_dao_tao
+
 responses:
   utter_greet:
   - text: "Xin chào! 👋 Mình là Trợ lý ảo tuyển sinh trường Đại học Trà Vinh. Mình có thể giúp gì cho bạn?"
@@ -31,7 +41,7 @@ responses:
   - text: "Tạm biệt bạn! Hẹn gặp lại bạn sớm nhé. 👋"
     image: "https://i.pinimg.com/736x/97/9d/94/979d948c27c1c2f0d9581441860e1deb.jpg"
 
-#Menu chính
+# Menu chính
   utter_gioi_thieu_bot:
   - text: "Chào bạn! 🤖 Mình là Trợ lý ảo AI (Chatbot) của Đại học Trà Vinh.\nNhiệm vụ của mình là hỗ trợ giải đáp thắc mắc 24/7 về tuyển sinh. Mình có thể giúp bạn các vấn đề sau:"
     buttons:
@@ -41,24 +51,25 @@ responses:
       payload: "/ask_major_menu"
     - title: "💰 Tra cứu Học bổng"
       payload: "/ask_scholarship"
+    - title: "⏳ Thời gian/Hạn nộp HS"
+      payload: "/hoi_thoi_gian_xet_tuyen"
+    - title: "📊 Tra cứu ĐẬU/TRƯỢT"
+      payload: "/tra_cuu_diem_chuan"
 
-#Menu phụ( gợi ý ngành hot)
+# Menu phụ (gợi ý ngành hot)
   utter_goi_y_nganh_hot:
   - text: "ĐH Trà Vinh có 47 ngành đào tạo. Dưới đây là 4 ngành được quan tâm nhiều nhất.\n\n👉 Nếu ngành bạn thích không có trong danh sách, hãy **nhập tên ngành** vào ô chat (Ví dụ: 'Ngành Thú y')."
     buttons:
-    # Nút 1: Có kèm entity để bot trả lời luôn
     - title: "💻 Công nghệ thông tin"
       payload: '/ask_major_info{{"major":"Công nghệ thông tin"}}'
-    # Nút 2
     - title: "⚕️ Y khoa"
       payload: '/ask_major_info{{"major":"Y khoa"}}'
-    # Nút 3
     - title: "💰 Quản trị kinh doanh"
       payload: '/ask_major_info{{"major":"Quản trị kinh doanh"}}'
-    # Nút 4
     - title: "🇺🇸 Ngôn ngữ Anh"
       payload: '/ask_major_info{{"major":"Ngôn ngữ Anh"}}'
-# Menu phụ( PT xét tuyển)
+
+# Menu phụ (PT xét tuyển)
   utter_tra_loi_xet_tuyen:
   - text: "Trường Đại học Trà Vinh xét tuyển theo 4 phương thức chính. Bạn muốn xem chi tiết phương thức nào?"
     buttons:
@@ -82,7 +93,8 @@ responses:
 
   utter_chi_tiet_406:
   - text: "4️⃣ **Phương thức 406:** Kết hợp Học bạ + Năng khiếu."
-# Menu phụ(Học bổng)
+
+# Menu phụ (Học bổng)
   utter_ask_scholarship:
   - text: "TVU có nhiều chính sách học bổng hấp dẫn để hỗ trợ sinh viên. Bạn quan tâm loại nào?"
     buttons:
@@ -93,7 +105,6 @@ responses:
     - title: "👩‍🔧 HB Nữ sinh Kỹ thuật"
       payload: "/ask_scholarship_female_tech"
 
-  # Nội dung chuẩn theo Quyết định 1982/QĐ-ĐHTV
   utter_scholarship_kkht:
   - text: "🏆 **Học bổng Khuyến khích học tập (Theo QĐ 1982/QĐ-ĐHTV):**\n\n✅ **Đối tượng:** Sinh viên có kết quả học tập và điểm rèn luyện đạt từ loại **Khá** trở lên trong học kỳ xét tuyển. Không bị kỷ luật.\n\n💰 **Mức hưởng:** Tùy thuộc vào xếp loại (Khá, Giỏi, Xuất sắc) và quỹ học bổng của trường, sinh viên sẽ được nhận mức hỗ trợ tương ứng (thường bằng hoặc cao hơn mức học phí)."
 
@@ -103,20 +114,143 @@ responses:
   utter_scholarship_female_tech:
   - text: "👩‍🔧 **Học bổng Nữ sinh Kỹ thuật (Đặc quyền tại TVU):**\n\n- Giảm **30% - 50% học phí** toàn khóa học cho sinh viên NỮ theo học các ngành kỹ thuật khô khan như: Cơ khí, Ô tô, Điện - Điện tử, Xây dựng...\n- Đây là chính sách khuyến khích đặc biệt của nhà trường."
 
+# Menu trả lời thời hạn nộp hồ sơ
+  utter_thoi_gian_xet_tuyen:
+  - text: |
+      📅 **Các mốc thời gian tuyển sinh quan trọng năm 2025:**
+
+      1️⃣ **Xét tuyển thẳng (Theo quy định Bộ GD&ĐT):**
+      🔻 Hạn chót: **17g00 ngày 30/6/2025**
+
+      2️⃣ **Các phương thức còn lại:**
+      (Học bạ, Thi tốt nghiệp THPT, ĐGNL ĐHQG TP.HCM)
+      🔻 Thời gian nhận hồ sơ: **16/7/2025 - 17g00 ngày 28/7/2025**
+      
+      ⚠️ *Lưu ý: Hệ thống thường quá tải vào ngày cuối, bạn nên nộp hồ sơ sớm nhé! Hoặc bạn cũng có thể đến trực tiếp tại phòng Công tác Sinh viên của trường để có thể thực hiện việc nộp hồ sơ trực tiếp và được sự hướng dẫn của các nhân viên của trường bạn nhé <3*
+    buttons:
+    - title: "📜 Xem chi tiết các Phương thức"
+      payload: "/hoi_phuong_thuc_xet_tuyen"
+    - title: "↩️ Quay lại Menu chính"
+      payload: "/hoi_thong_tin_bot"
+
+# Các câu hỏi cho Form Điểm Chuẩn
+  utter_ask_major:
+  - text: "Bạn muốn tra cứu điểm chuẩn cho ngành nào? (Ví dụ: Công nghệ thông tin, Y khoa...)"
+
+  utter_ask_to_hop:
+  - text: "Bạn xét tuyển theo tổ hợp môn nào? (Ví dụ: A00, D01, C00...)"
+  
+  utter_ask_diem_mon_1:
+  - text: "Nhập điểm môn thứ nhất (Theo tổ hợp bạn chọn):"
+  
+  utter_ask_diem_mon_2:
+  - text: "Nhập điểm môn thứ hai:"
+
+  utter_ask_diem_mon_3:
+  - text: "Nhập điểm môn thứ ba:"
+  
+  utter_ask_diem_uu_tien:
+  - text: "Bạn được cộng bao nhiêu điểm ưu tiên? (Nếu không có hãy nhập 0)"
+
+  utter_ask_program_major:
+  - text: "Bạn muốn xem Chương trình đào tạo & Việc làm của ngành nào? (Ví dụ: Công nghệ thông tin, Dược học...)"
+
 entities:
   - major
+  - to_hop
+
 slots: 
+# Slot: Chỉ dùng cho tra cứu điểm chuẩn
   major:
       type: text
+      influence_conversation: false
       mappings:
       - type: from_entity
-        entity: major      
+        entity: major
+      - type: from_text
+        conditions:
+        - active_loop: form_tinh_diem_chuan
+          requested_slot: major
+
+  program_major:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: major
+    - type: from_text
+      conditions:
+      - active_loop: form_chi_tiet_nganh
+        requested_slot: program_major
+
+  to_hop:
+      type: text
+      influence_conversation: false
+      mappings:
+      - type: from_entity
+        entity: to_hop
+      - type: from_text
+        conditions:
+        - active_loop: form_tinh_diem_chuan
+          requested_slot: to_hop
+
+  diem_mon_1:
+    type: float
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: form_tinh_diem_chuan
+          requested_slot: diem_mon_1
+
+  diem_mon_2:
+    type: float
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: form_tinh_diem_chuan
+          requested_slot: diem_mon_2
+
+  diem_mon_3:
+    type: float
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: form_tinh_diem_chuan
+          requested_slot: diem_mon_3
+          
+  diem_uu_tien:
+    type: float
+    mappings:
+      - type: from_text
+        conditions:
+        - active_loop: form_tinh_diem_chuan
+          requested_slot: diem_uu_tien
+
+# KHAI BÁO FORM
+forms:
+  form_tinh_diem_chuan:
+    required_slots:
+      - major
+      - to_hop
+      - diem_mon_1
+      - diem_mon_2
+      - diem_mon_3    
+      - diem_uu_tien
+
+  form_chi_tiet_nganh:
+    required_slots:
+      - program_major
+
 actions:
   # Thông tin ngành
   - action_provide_major_info
   # TG đào tạo
-  - action_provide_duration      # Hàm 2: Chỉ trả lời thời gian
-  - action_provide_tuition       # Hàm 3: Chỉ trả lời học phí
+  - action_provide_duration
+  - action_provide_tuition
+  - action_tinh_ket_qua_xet_tuyen
+  # Chương trình đào tạo
+  - action_provide_program_details
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

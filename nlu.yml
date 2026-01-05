@@ -1,0 +1,624 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - xin chào
+    - chào bạn
+    - hello
+    - hi
+    - chào ad
+    - ad ơi
+    - cho mình hỏi chút
+    - có ai ở đó không
+    - chào buổi sáng
+    - alo
+    - ê
+    - chào
+
+- intent: goodbye
+  examples: |
+    - good bye
+    - see you later
+    - good night
+    - bye
+    - goodbye
+    - bye bye
+    - tạm biệt
+    - chào nhé
+    - hẹn gặp lại
+    - mình đi đây
+    - kết thúc
+    - stop
+    - nghỉ nhé
+
+- intent: hoi_thong_tin_bot
+  examples: |
+    - bạn là ai
+    - giới thiệu về bản thân đi
+    - bot tên gì
+    - bạn có chức năng gì
+    - bạn làm được gì
+    - chức năng của hệ thống
+    - mình cần hướng dẫn sử dụng
+    - help
+    - giúp tôi với
+    - bạn là người thật hay máy
+
+
+- intent: hoi_phuong_thuc_xet_tuyen
+  examples: |
+    - các phương thức xét tuyển
+    - trường xét tuyển như thế nào
+    - làm sao để vào học tại trường
+    - quy chế tuyển sinh
+    - cách nộp hồ sơ xét tuyển
+    - trường có xét học bạ không
+    - xét tuyển đại học trà vinh
+
+- intent: hoi_phuong_thuc_100
+  examples: |
+    - phương thức 100 là gì
+    - xét điểm thi thpt
+    - xét kết quả thi tốt nghiệp
+    - mã 100 là gì
+    - xét tuyển dựa vào điểm thi
+
+- intent: hoi_phuong_thuc_200
+  examples: |
+    - phương thức 200
+    - xét học bạ
+    - mã 200 là gì
+    - xét tuyển dựa vào học bạ
+
+- intent: hoi_phuong_thuc_405
+  examples: |
+    - phương thức 405
+    - xét điểm thi và năng khiếu
+    - thi năng khiếu kết hợp điểm thi
+    - mã 405
+
+- intent: hoi_phuong_thuc_406
+  examples: |
+    - phương thức 406
+    - học bạ kết hợp năng khiếu
+    - xét năng khiếu bằng học bạ
+    - mã 406
+#Luật (Không nhầm lẫn từ ngữ)
+- lookup: major
+  examples: |
+    - Công nghệ thông tin
+    - Y khoa
+    - Dược học
+    - Răng Hàm Mặt
+    - Điều dưỡng
+    - Kỹ thuật xét nghiệm y học
+    - Công nghệ kỹ thuật ô tô
+    - Công nghệ kỹ thuật cơ khí
+    - Công nghệ kỹ thuật điện điện tử
+    - Công nghệ kỹ thuật điều khiển và tự động hóa
+    - Công nghệ kỹ thuật công trình xây dựng
+    - Kỹ thuật xây dựng công trình giao thông
+    - Nông nghiệp
+    - Thú y
+    - Nuôi trồng thủy sản
+    - Bảo vệ thực vật
+    - Công nghệ thực phẩm
+    - Quản trị kinh doanh
+    - Tài chính ngân hàng
+    - Kế toán
+    - Luật
+    - Logistics và quản lý chuỗi cung ứng
+    - Ngôn ngữ Anh
+    - Ngôn ngữ Trung Quốc
+    - Ngôn ngữ Khmer
+    - Giáo dục Mầm non
+    - Giáo dục Tiểu học
+    - CNTT
+    - QTKD
+    - IT
+    - RMM
+    - Logistics
+# Ask_Ngành
+- intent: ask_major_info
+  examples: |
+    - giới thiệu về ngành [Công nghệ thông tin](major)
+    - ngành [Công nghệ thông tin](major)
+    - cho mình xin thông tin ngành [Y khoa](major)
+    - ngành [Y khoa](major)
+    - ngành [Thú y](major) là gì
+    - học [Kế toán](major) ra trường làm gì
+    - ngành [Kế toán](major)
+    - tư vấn giúp em ngành [Luật](major)
+    - ngành [Luật](major)
+    - [Công nghệ kỹ thuật ô tô](major)
+    - ngành [Công nghệ kỹ thuật ô tô](major)
+    - [Quản trị kinh doanh](major) có khó không
+    - ngành [Quản trị kinh doanh](major)
+    - điểm chuẩn ngành [Dược học](major)
+    - ngành [Dược](major)
+    - ngành [Dược học](major)
+    - ngành [Ngôn ngữ Anh](major)
+    - ngành [Tiếng Anh](major)
+    - [Giáo dục Mầm non](major)
+    - ngành [Giáo dục Mầm non](major)
+    - ngành [sự phạm Mầm non](major)
+    - tìm hiểu về [Logistics](major)
+    - ngành [Logistics và Quản lý chuỗi cung ứng](major)
+    - ngành [Logistics](major)
+    - [Răng Hàm Mặt](major) học mấy năm
+    - ngành [Răng Hàm Mặt](major)
+    - ngành [Điện - Điện tử](major)
+    - thông tin ngành [Điện - Điện tử](major)
+    - ngành [Điện](major)
+    - ngành [Điện tử](major)
+    - [CNTT](major)
+    - [QTKD](major)
+    - [Y đa khoa](major)
+    - [Sư phạm văn](major)
+    - [Nuôi trồng thủy sản](major)
+    - [Trí tuệ nhân tạo](major)
+    - [AI](major)
+    - [Công nghệ kỹ thuật cơ khí](major)
+    - [Công nghệ kỹ thuật điều khiển và tự động hóa](major)
+    - [Tự động hóa](major)
+    - [Công nghệ kỹ thuật công trình xây dựng](major)
+    - [Xây dựng](major)
+    - [Kỹ thuật xây dựng công trình giao thông](major)
+    - [Cầu đường](major)
+    - [Nông nghiệp](major)
+    - [Bảo vệ thực vật](major)
+    - [Công nghệ thực phẩm](major)
+    - [Công nghệ sinh học](major)
+    - [Kỹ thuật môi trường](major)
+    - [Điều dưỡng](major)
+    - [Kỹ thuật xét nghiệm y học](major)
+    - [Xét nghiệm](major)
+    - [Y học dự phòng](major)
+    - [Y tế công cộng](major)
+    - [Kỹ thuật hình ảnh y học](major)
+    - [Kỹ thuật phục hồi chức năng](major)
+    - [Vật lý trị liệu](major)
+    - [Dinh dưỡng](major)
+    - [Hóa dược](major)
+    - [Tài chính ngân hàng](major)
+    - [Ngân hàng](major)
+    - [Kinh tế](major)
+    - [Thương mại điện tử](major)
+    - [TMĐT](major)
+    - [Quản trị dịch vụ du lịch và lữ hành](major)
+    - [Du lịch](major)
+    - [Quản trị khách sạn](major)
+    - [Quản trị nhà hàng và dịch vụ ăn uống](major)
+    - [Ngôn ngữ Trung Quốc](major)
+    - [Tiếng Trung](major)
+    - [Ngôn ngữ Khmer](major)
+    - [Tiếng Khmer](major)
+    - [Văn hóa học](major)
+    - [Âm nhạc học](major)
+    - [Biểu diễn nhạc cụ truyền thống](major)
+    - [Nhạc cụ dân tộc](major)
+    - [Giáo dục Tiểu học](major)
+    - [Sư phạm Ngữ văn](major)
+    - [Sư phạm Tiếng Khmer](major)
+    - [Công tác xã hội](major)
+    - [CTXH](major)
+    - [cong nghe thong tin](major)
+    - [y duoc](major)
+    - [thu y](major)
+    - [ke toan](major)
+    - [quan tri kinh doanh](major)
+    - [marketing](major)
+    - [logistics](major)
+    - [oto](major)
+    - [dien tu](major)
+
+# ==========================================================
+
+# --- KHỐI SỨC KHỎE ---
+- synonym: y khoa
+  examples: |
+    - y đa khoa
+    - bác sĩ
+    - bác sĩ đa khoa
+    - y
+    - y đa khoa
+
+- synonym: răng hàm mặt
+  examples: |
+    - nha khoa
+    - rhm
+    - rang ham mat
+    - bác sĩ nha khoa
+
+- synonym: dược học
+  examples: |
+    - dược
+    - duoc
+    - bán thuốc
+    - duoc si
+
+- synonym: kỹ thuật xét nghiệm y học
+  examples: |
+    - xét nghiệm
+    - xet nghiem
+    - xet nghiem y hoc
+
+- synonym: kỹ thuật phục hồi chức năng
+  examples: |
+    - phục hồi chức năng
+    - vật lý trị liệu
+    - phuc hoi chuc nang
+
+# --- KHỐI KỸ THUẬT & CÔNG NGHỆ ---
+- synonym: công nghệ thông tin
+  examples: |
+    - CNTT
+    - IT
+    - tin học
+    - cong nghe thong tin
+    - lap trinh
+    - coder
+
+- synonym: trí tuệ nhân tạo
+  examples: |
+    - AI
+    - tri tue nhan tao
+    - machine learning
+
+- synonym: công nghệ kỹ thuật ô tô
+  examples: |
+    - ô tô
+    - oto
+    - sua chua o to
+    - cong nghe o to
+    - xe hơi
+
+- synonym: công nghệ kỹ thuật cơ khí
+  examples: |
+    - cơ khí
+    - co khi
+    - chế tạo máy
+
+- synonym: công nghệ kỹ thuật điện điện tử
+  examples: |
+    - điện điện tử
+    - điện công nghiệp
+    - dien tu
+    - dien dien tu
+
+- synonym: công nghệ kỹ thuật điều khiển và tự động hóa
+  examples: |
+    - tự động hóa
+    - tu dong hoa
+    - điều khiển tự động
+
+- synonym: công nghệ kỹ thuật công trình xây dựng
+  examples: |
+    - xây dựng
+    - xay dung
+    - kĩ sư xây dựng
+
+- synonym: kỹ thuật xây dựng công trình giao thông
+  examples: |
+    - cầu đường
+    - giao thông
+    - xay dung cau duong
+
+# --- KHỐI NÔNG NGHIỆP ---
+- synonym: nông nghiệp
+  examples: |
+    - nong nghiep
+    - trồng trọt
+    - khuyến nông
+
+- synonym: thú y
+  examples: |
+    - bác sĩ thú y
+    - thu y
+    - chó mèo
+    - chữa bệnh động vật
+
+- synonym: nuôi trồng thủy sản
+  examples: |
+    - thủy sản
+    - thuy san
+    - nuôi tôm
+    - nuôi cá
+
+- synonym: công nghệ thực phẩm
+  examples: |
+    - thực phẩm
+    - thuc pham
+    - chế biến thực phẩm
+
+# --- KHỐI KINH TẾ - LUẬT ---
+- synonym: quản trị kinh doanh
+  examples: |
+    - QTKD
+    - quan tri kinh doanh
+    - kinh doanh
+    - qtkd
+
+- synonym: tài chính ngân hàng
+  examples: |
+    - ngân hàng
+    - tài chính
+    - tai chinh ngan hang
+    - bank
+
+- synonym: kế toán
+  examples: |
+    - ke toan
+    - kiểm toán
+    - kiem toan
+
+- synonym: luật
+  examples: |
+    - luat
+    - luật sư
+    - luat kinh te
+
+- synonym: logistics và quản lý chuỗi cung ứng
+  examples: |
+    - logistics
+    - xuất nhập khẩu
+    - chuỗi cung ứng
+    - logictic
+
+- synonym: thương mại điện tử
+  examples: |
+    - TMĐT
+    - thuong mai dien tu
+    - kinh doanh online
+
+# --- KHỐI DU LỊCH & KHÁCH SẠN ---
+- synonym: quản trị dịch vụ du lịch và lữ hành
+  examples: |
+    - du lịch
+    - lữ hành
+    - hướng dẫn viên
+    - du lich
+
+- synonym: quản trị khách sạn
+  examples: |
+    - khách sạn
+    - khach san
+    - lễ tân
+
+- synonym: quản trị nhà hàng và dịch vụ ăn uống
+  examples: |
+    - nhà hàng
+    - nha hang
+    - ăn uống
+
+# --- KHỐI NGÔN NGỮ & SƯ PHẠM ---
+- synonym: ngôn ngữ anh
+  examples: |
+    - tiếng anh
+    - anh văn
+    - NNA
+    - ngon ngu anh
+    - tieng anh
+
+- synonym: ngôn ngữ trung quốc
+  examples: |
+    - tiếng trung
+    - tiếng hoa
+    - trung văn
+
+- synonym: ngôn ngữ khmer
+  examples: |
+    - tiếng khmer
+    - tieng khmer
+    - tiếng campuchia
+
+- synonym: giáo dục mầm non
+  examples: |
+    - mầm non
+    - mam non
+    - mẫu giáo
+
+- synonym: giáo dục tiểu học
+  examples: |
+    - tiểu học
+    - tieu hoc
+    - cấp 1
+
+- synonym: công tác xã hội
+  examples: |
+    - CTXH
+    - cong tac xa hoi
+
+#=========================================================
+
+#HỎI CHUNG VỀ HỌC BỔNG (Để hiện Menu)
+- intent: ask_scholarship
+  examples: |
+    - học bổng
+    - trường có những loại học bổng nào
+    - chính sách học bổng của đại học trà vinh
+    - em muốn tìm hiểu về các gói hỗ trợ tài chính
+    - làm sao để săn học bổng
+    - điều kiện để nhận học bổng là gì
+    - xin học bổng như thế nào
+    - các chế độ đãi ngộ cho sinh viên
+    - trường mình có ưu đãi gì cho sinh viên không
+    - ad ơi trường có học bổng ko
+    - có tiền thưởng cho sv giỏi ko ad
+    - học bổng tvu
+    - san hoc bong
+    - hoc bong
+    - chinh sach ho tro sinh vien
+    - xem danh sach hoc bong
+    - HB
+    - hb
+#HỌC BỔNG KHUYẾN KHÍCH HỌC TẬP (KKHT)
+- intent: ask_scholarship_kkht
+  examples: |
+    - học bổng khuyến khích học tập
+    - học bổng kkht
+    - HB KKHT
+    - học bổng khuyến khích
+    - bao nhiêu điểm thì được học bổng loại giỏi
+    - loại khá có được học bổng không
+    - điều kiện điểm rèn luyện để nhận học bổng
+    - điểm trung bình bao nhiêu mới có tiền thưởng
+    - xét học bổng dựa trên điểm thi hay điểm tổng kết
+    - em bị kỷ luật có được xét học bổng không
+    - điểm rèn luyện dưới khá có được không
+    - học bổng loại xuất sắc bao nhiêu tiền
+    - hoc bong khuyen khich hoc tap
+    - hb kkht
+    - dieu kien nhan giay khen
+    - diem ren luyen bao nhieu thi duoc
+
+#HỌC BỔNG TÀI TRỢ (Doanh nghiệp, Hội khuyến học...)
+- intent: ask_scholarship_sponsor
+  examples: |
+    - học bổng tài trợ
+    - học bổng doanh nghiệp
+    - có học bổng của mạnh thường quân không
+    - học bổng cho sinh viên nghèo vượt khó
+    - em hoàn cảnh khó khăn có được hỗ trợ không
+    - học bổng dành cho dân tộc thiểu số
+    - quỹ khuyến học
+    - học bổng ngoài ngân sách
+    - xin hỗ trợ chi phí học tập
+    - hoc bong tai tro
+    - hoc bong doanh nghiep
+    - sv ngheo vuot kho
+    - ho tro sinh vien kho khan
+    - hỗ trợ sinh viên nghèo  
+
+#HỌC BỔNG NỮ SINH KỸ THUẬT
+- intent: ask_scholarship_female_tech
+  examples: |
+    - học bổng nữ sinh kỹ thuật
+    - con gái học kỹ thuật có được giảm tiền không
+    - chính sách dành cho nữ sinh
+    - nữ học công nghệ thông tin có được ưu đãi gì
+    - nghe nói nữ học cơ khí được miễn giảm học phí
+    - giảm 50% học phí cho nữ đúng không
+    - nữ sinh học ô tô
+    - ưu đãi cho phái nữ
+    - nữ học xây dựng
+    - nữ học điện điện tử
+    - hoc bong nu sinh
+    - nu hoc ky thuat
+    - giam hoc phi cho nu
+    - chinh sach cho nu sinh vien
+    - nữ hoc cơ khí
+    - nữ học ngành kỹ thuật có được giảm học phí không
+    - ưu đãi cho nữ
+    - nu sinh
+  
+# ============================================================
+
+# THời gian đào tạo các ngành
+- intent: ask_training_duration
+  examples: |
+    - học mấy năm
+    - thời gian đào tạo
+    - ngành này học trong bao lâu
+    - bao lâu thì ra trường
+    - thời gian học
+    - mấy năm tốt nghiệp
+
+# ============================================================
+
+# Học phí các ngành
+- intent: ask_tuition
+  examples: |
+    - học phí
+    - xem học phí
+    - tiền học bao nhiêu
+    - chi phí học tập
+
+# ============================================================
+
+# Thời hạn nộp hồ sơ
+- intent: hoi_thoi_gian_xet_tuyen
+  examples: |
+    - Khi nào bắt đầu nhận hồ sơ?
+    - Hạn chót nộp học bạ là bao giờ?
+    - Thời gian xét tuyển năm 2025
+    - Bao giờ hết hạn nộp xét điểm thi THPT?
+    - lịch nộp hồ sơ đánh giá năng lực
+    - deadline nộp hồ sơ tuyển thẳng
+    - mốc thời gian xét tuyển
+
+# ============================================================
+
+# Tra cứu điểm chuẩn
+
+- intent: tra_cuu_diem_chuan
+  examples: |
+    - tra cứu điểm chuẩn
+    - xem điểm chuẩn ngành [Công nghệ thông tin](major)
+    - điểm sàn ngành [Y khoa](major) bao nhiêu
+    - tôi muốn tính điểm xét tuyển
+    - xem mình có đậu ngành [Luật](major) không
+    - check điểm chuẩn
+    - tính điểm đậu rớt
+    - tra cứu đậu trượt
+
+- intent: nhap_diem_so
+  examples: |
+    - 8.5
+    - 9
+    - 7.25
+    - em thi được 24 điểm
+    - được 8 điểm
+    - môn toán 9 điểm
+    - 18 điểm
+    - 21.5
+
+- intent: cung_cap_to_hop
+  examples: |
+    - [A00](to_hop)
+    - [A01](to_hop)
+    - [B00](to_hop)
+    - khối [D01](to_hop)
+    - tổ hợp [C00](to_hop)
+    - xét tuyển khối [A00](to_hop)
+    - em chọn [D14](to_hop)
+    - [D15](to_hop)
+    - [C00](to_hop)
+
+#  Hỏi về chương trình đào tạo
+- intent: hoi_chuong_trinh_dao_tao
+  examples: |
+    - học ngành [Công nghệ thông tin](major) ra trường làm gì
+    - cơ hội việc làm ngành [Y khoa](major)
+    - học [Ngôn ngữ Anh](major) có dễ xin việc không
+    - kỹ năng nghề nghiệp ngành [Kế toán](major)
+    - chương trình đào tạo ngành [Thú y](major) gồm những gì
+    - chuẩn đầu ra ngành [Luật](major)
+    - học [CNTT](major) ra làm ở đâu
+    - tốt nghiệp ngành này làm nghề gì
+    - công việc sau khi ra trường ngành [dược](major)
+    - học [quản trị kinh doanh](major) làm sếp được không
+    - ra trường làm gì
+    - cơ hội nghề nghiệp
+    - kỹ năng cần có
+    - việc làm sau khi tốt nghiệp
+
+# Thực thể tổ hợp
+- regex: to_hop
+  examples: |
+    - [A-D,V,H,M,N,T,S,R,K][0-9]{2}  # Bắt A00, D01, H00, V00...
+# Menu cho người lười ~~
+- intent: ask_major_menu
+  examples: |
+    - thông tin ngành học
+    - xem danh sách ngành
+    - trường có ngành gì
+    - tư vấn ngành học
+    - các ngành đào tạo
+    - mở menu
+    - hiện menu
+    - mo menu
+    - hien menu
+    - xem menu
+    - menu đâu

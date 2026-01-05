@@ -1,0 +1,116 @@
+version: "3.1"
+
+rules:
+
+- rule: Hien thi cac phuong thuc xet tuyen
+  steps:
+  - intent: hoi_phuong_thuc_xet_tuyen  
+  - action: utter_tra_loi_xet_tuyen    
+
+# ==========================================================
+
+- rule: Hien thi menu goi y nganh hot
+  steps:
+  - intent: ask_major_menu
+  - action: utter_goi_y_nganh_hot
+
+# ==========================================================
+
+- rule: Say hello
+  steps:
+  - intent: greet
+  - action: utter_gioi_thieu_bot
+
+- rule: Say goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+# ==========================================================
+
+# Chính: Hỏi học bổng chung
+- rule: Tra loi ve hoc bong chung
+  steps:
+  - intent: ask_scholarship
+  - action: utter_ask_scholarship
+
+#Phụ 1: Hỏi KKHT
+- rule: Chi tiet hoc bong KKHT
+  steps:
+  - intent: ask_scholarship_kkht
+  - action: utter_scholarship_kkht
+
+#Phụ 2: Hỏi Tài trợ
+- rule: Chi tiet hoc bong Tai tro
+  steps:
+  - intent: ask_scholarship_sponsor
+  - action: utter_scholarship_sponsor
+
+#Phụ 3: Hỏi Nữ sinh kỹ thuật
+- rule: Chi tiet hoc bong Nu sinh
+  steps:
+  - intent: ask_scholarship_female_tech
+  - action: utter_scholarship_female_tech
+
+# ==========================================================
+
+# Khi user bấm nút "Thời gian đào tạo" -> Gọi hàm trả lời thời gian
+- rule: Tra loi thoi gian dao tao
+  steps:
+  - intent: ask_training_duration
+  - action: action_provide_duration
+
+# Khi user bấm nút "Học phí" -> Gọi hàm trả lời học phí
+- rule: Tra loi hoc phi
+  steps:
+  - intent: ask_tuition
+  - action: action_provide_tuition
+
+# ==========================================================
+
+# Thời hạn nộp hồ sơ
+- rule: Tra loi ve thoi gian xet tuyen
+  steps:
+  - intent: hoi_thoi_gian_xet_tuyen
+  - action: utter_thoi_gian_xet_tuyen
+
+# ==========================================================
+
+# Tra cuu diem chuan xet tuyen (FORM CŨ)
+- rule: Kich hoat form tra cuu diem
+  steps:
+  - intent: tra_cuu_diem_chuan
+  - action: form_tinh_diem_chuan
+  - active_loop: form_tinh_diem_chuan
+
+- rule: Nop form va tinh ket qua
+  condition:
+  - active_loop: form_tinh_diem_chuan
+  steps:
+  - action: form_tinh_diem_chuan
+  - active_loop: null
+  - action: action_tinh_ket_qua_xet_tuyen
+
+# ==========================================================
+
+# 1. Trường hợp User hỏi trực tiếp: "Việc làm ngành CNTT" (Không cần Form)
+- rule: Tra loi truc tiep viec lam va ky nang
+  steps:
+  - intent: ask_program_career
+  - action: action_provide_program_details
+
+# 2. Trường hợp User hỏi chung: "Chương trình đào tạo" -> Kích hoạt Form hỏi tên ngành
+- rule: Kich hoat form chi tiet nganh
+  steps:
+  - intent: hoi_chuong_trinh_dao_tao
+  - action: form_chi_tiet_nganh
+  - active_loop: form_chi_tiet_nganh
+
+# 3. Khi User nhập xong tên ngành -> Tắt Form và trả lời kết quả
+- rule: Nop form va hien thi chi tiet chuong trinh
+  condition:
+  - active_loop: form_chi_tiet_nganh
+  steps:
+  - action: form_chi_tiet_nganh
+  - active_loop: null
+  - action: action_provide_program_details

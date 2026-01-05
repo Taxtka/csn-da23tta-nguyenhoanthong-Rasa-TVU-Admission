@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tư vấn Tuyển sinh - ĐH Trà Vinh</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #FFEB3B 0%, #76FF03 45%, #004481 100%);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .logo { 
+            width: 130px; 
+            margin-bottom: 20px;
+            border-radius: 50%;
+            background-color: white;
+            padding: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 { 
+            color: #004481; 
+            margin-bottom: 10px; 
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        p { 
+            color: #003366; 
+            font-size: 18px; 
+            font-weight: 500;
+        }
+
+        .note { 
+            font-size: 14px; 
+            color: #004481; 
+            margin-top: 20px; 
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .restart-btn {
+            background: #004481;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,68,129,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .restart-btn:hover {
+            background: #003366;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,68,129,0.4);
+        }
+
+        .author {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #004481;
+            font-weight: bold;
+            border-top: 1px solid rgba(255,255,255,0.5);
+            padding-top: 10px;
+        }
+        .rw-conversation-container .rw-messages-container .rw-message .rw-response,
+        .rw-conversation-container .rw-messages-container .rw-message .rw-response * {
+            white-space: pre-wrap !important;
+            word-wrap: break-word !important;
+            word-break: break-word !important;
+            overflow-wrap: break-word !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .rw-conversation-container .rw-messages-container .rw-message .rw-response pre,
+        .rw-conversation-container .rw-messages-container .rw-message .rw-response code {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+            background: transparent !important;
+            border: none !important;
+            white-space: pre-wrap !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            color: inherit !important;
+            box-shadow: none !important;
+        }
+
+        .rw-conversation-container .rw-messages-container .rw-message {
+            max-width: 90% !important; 
+            padding: 12px 16px !important;
+        }
+        
+        .rw-conversation-container .rw-messages-container .rw-message .rw-response {
+            overflow-x: hidden !important; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="Logo_TVU.jpg" alt="Logo TVU" class="logo">
+        
+        <h1>ĐẠI HỌC TRÀ VINH</h1>
+        <p>Tìm hiểu Rasa và xây dựng kịch bản tư vấn tuyển sinh cho Trường Đại học Trà Vinh</p>
+
+        <button class="restart-btn" onclick="resetChat()">
+            🔄 Bắt đầu đoạn chat mới
+        </button>
+        
+        <p class="note">👇 Bấm vào biểu tượng tin nhắn ở góc dưới bên phải để bắt đầu!</p>
+
+        <div class="author">
+            Designed & Developed by Nguyễn Hoàn Thông
+        </div>
+    </div>
+
+    <script>
+        function resetChat() {
+            window.localStorage.clear();
+            window.sessionStorage.clear();
+            location.reload();
+        }
+    </script>
+
+    <script>!(function () {
+        let e = document.createElement("script"),
+          t = document.head || document.getElementsByTagName("head")[0];
+        (e.src =
+          "https://cdn.jsdelivr.net/npm/rasa-webchat@1.0.1/lib/index.js"),
+          (e.async = !0),
+          (e.onload = () => {
+            window.WebChat.default(
+              {
+                selector: "#webchat",
+                initPayload: "/greet",
+                customData: { language: "vi" },
+                socketUrl: "http://localhost:5005",
+                socketPath: "/socket.io/",
+    
+                mainColor: "#F57F17", // Màu boxchat
+                
+                title: "TVU Assistant",
+                subtitle: "Hỗ trợ tuyển sinh 2025",
+                profileAvatar: "https://cdn-icons-png.flaticon.com/512/4712/4712035.png",
+                showCloseButton: true,
+                fullScreenMode: false,
+                inputTextFieldHint: "Nhập câu hỏi của bạn...",
+              },
+              null
+            );
+          }),
+          t.insertBefore(e, t.firstChild);
+      })();
+      </script>
+
+</body>
+</html>

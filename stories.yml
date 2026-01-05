@@ -1,0 +1,149 @@
+version: "3.1"
+
+stories:
+
+#- story: kịch bản chào hỏi
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+
+- story: kịch bản tạm biệt
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: kịch bản tự giới thiệu
+  steps:
+  - intent: hoi_thong_tin_bot
+  - action: utter_gioi_thieu_bot
+
+# Kịch bản tổng quát (Hiện menu)
+- story: kịch bản xem xét tuyển
+  steps:
+  - intent: hoi_phuong_thuc_xet_tuyen
+  - action: utter_tra_loi_xet_tuyen
+
+# Kịch bản chi tiết từng mã
+- story: kịch bản xem mã 100
+  steps:
+  - intent: hoi_phuong_thuc_xet_tuyen
+  - action: utter_tra_loi_xet_tuyen
+  - intent: hoi_phuong_thuc_100
+  - action: utter_chi_tiet_100
+
+- story: kịch bản xem mã 200
+  steps:
+  - intent: hoi_phuong_thuc_xet_tuyen
+  - action: utter_tra_loi_xet_tuyen
+  - intent: hoi_phuong_thuc_200
+  - action: utter_chi_tiet_200
+
+- story: kịch bản xem mã 405
+  steps:
+  - intent: hoi_phuong_thuc_xet_tuyen
+  - action: utter_tra_loi_xet_tuyen
+  - intent: hoi_phuong_thuc_405
+  - action: utter_chi_tiet_405
+
+- story: kịch bản xem mã 406
+  steps:
+  - intent: hoi_phuong_thuc_xet_tuyen
+  - action: utter_tra_loi_xet_tuyen
+  - intent: hoi_phuong_thuc_406
+  - action: utter_chi_tiet_406
+# Kịch bản hỏi thông tin ngành học
+- story: hoi thong tin nganh
+  steps:
+  - intent: ask_major_info
+    entities:
+    - major: "Công nghệ thông tin"
+  - action: action_provide_major_info
+# Kịch bản hỏi học bổng
+# Kịch bản 1: Hỏi học bổng chung -> Chọn loại KKHT
+- story: kịch bản hỏi học bổng từ menu
+  steps:
+  - intent: ask_scholarship
+  - action: utter_ask_scholarship
+  - intent: ask_scholarship_kkht
+  - action: utter_scholarship_kkht
+
+# Kịch bản 2: Hỏi thẳng về học bổng nữ sinh (Không qua menu)
+- story: kịch bản hỏi thẳng học bổng nữ sinh
+  steps:
+  - intent: ask_scholarship_female_tech
+  - action: utter_scholarship_female_tech
+
+# Kịch bản hỏi thời gian vs học phí
+#1: Hỏi ngành xong hỏi tiếp học phí
+- story: hoi nganh roi hoi hoc phi
+  steps:
+  - intent: ask_major_info
+    entities:
+    - major: "Công nghệ thông tin"
+  - action: action_provide_major_info
+  - intent: ask_tuition
+  - action: action_provide_tuition
+
+#2: Hỏi ngành xong hỏi tiếp thời gian
+- story: hoi nganh roi hoi thoi gian
+  steps:
+  - intent: ask_major_info
+    entities:
+    - major: "Y khoa"
+  - action: action_provide_major_info
+  - intent: ask_training_duration
+  - action: action_provide_duration
+#Điểm xét tuyển
+- story: tra cuu diem chuan happy path
+  steps:
+  - intent: greet
+ # - action: utter_greet
+  - action: utter_gioi_thieu_bot
+  - intent: tra_cuu_diem_chuan
+  - action: form_tinh_diem_chuan
+  - active_loop: form_tinh_diem_chuan
+  - slot_was_set:
+    - requested_slot: major
+  - slot_was_set:
+    - major: "Công nghệ thông tin"
+  - slot_was_set:
+    - requested_slot: to_hop
+  - slot_was_set:
+    - to_hop: "A01"
+  - slot_was_set:
+    - requested_slot: diem_mon_1
+  - slot_was_set:
+    - diem_mon_1: 8.0
+  - slot_was_set:
+    - requested_slot: diem_mon_2
+  - slot_was_set:
+    - diem_mon_2: 7.5
+  - slot_was_set:
+    - requested_slot: diem_mon_3
+  - slot_was_set:
+    - diem_mon_3: 9.0
+  - active_loop: null
+  - action: action_tinh_ket_qua_xet_tuyen
+# Chương trình đào tạo
+- story: kịch bản xem chương trình đào tạo (qua form)
+  steps:
+  - intent: greet
+#  - action: utter_greet
+  - action: utter_gioi_thieu_bot
+  - intent: hoi_chuong_trinh_dao_tao
+  - action: form_chi_tiet_nganh
+  - active_loop: form_chi_tiet_nganh
+  - slot_was_set:
+    - requested_slot: program_major
+  - slot_was_set:
+    - program_major: "Công nghệ thông tin"
+  - active_loop: null
+  - action: action_provide_program_details
+
+# Kịch bản 2: User hỏi thẳng (Có tên ngành sẵn) -> Trả lời luôn
+- story: kịch bản hỏi thẳng việc làm (không qua form)
+  steps:
+  - intent: ask_program_career
+    entities:
+    - major: "Thú y"
+  - action: action_provide_program_details
